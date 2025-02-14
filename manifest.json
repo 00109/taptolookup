@@ -1,11 +1,11 @@
 {
-  "author": "Suraj Jain",
+  "author": "Sans Sheriff",
 
-  "manifest_version": 2,
-  "name": "Dictionary Anywhere",
+  "manifest_version": 1,
+  "name": "TapToLookUp",
   "version": "1.1.0",
 
-  "description": "View definitions easily as you browse the web. Double-click any word to view its definition in a small pop-up bubble.",
+  "description": "Look up word definitions by double-clicking on any selectable word. Definitions will pop up in a small bubble container.",
 
   "icons": {
     "48": "icons/Dictionary-48.png",
@@ -40,6 +40,6 @@
 
   "permissions": [
     "storage",
-    "https://www.google.com/"
+    "https://www.startpage.com/"
   ]
 }

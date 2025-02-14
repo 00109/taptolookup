@@ -1,4 +1,4 @@
-const GOOGLE_SPEECH_URI = 'https://www.google.com/speech-api/v1/synthesize',
+// const GOOGLE_SPEECH_URI = 'https://www.google.com/speech-api/v1/synthesize',
 
     DEFAULT_HISTORY_SETTING = {
         enabled: true
@@ -6,7 +6,7 @@ const GOOGLE_SPEECH_URI = 'https://www.google.com/speech-api/v1/synthesize',
 
 browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
     const { word, lang } = request, 
-        url = `https://www.google.com/search?hl=${lang}&q=define+${word}&gl=US`;
+        url = `https://www.startpage.com/search?hl=${lang}&q=define+${word}&gl=US`;
     
     fetch(url, { 
             method: 'GET',
@@ -45,29 +45,29 @@ function extractMeaning (document, context) {
 
     meaning = meaning[0].toUpperCase() + meaning.substring(1);
 
-    var audio = document.querySelector("audio[jsname='QInZvb']"),
-        source = document.querySelector("audio[jsname='QInZvb'] source"),
-        audioSrc = source && source.getAttribute('src');
+    // var audio = document.querySelector("audio[jsname='QInZvb']"),
+    //     source = document.querySelector("audio[jsname='QInZvb'] source"),
+    //     audioSrc = source && source.getAttribute('src');
 
-    if (audioSrc) {
-        !audioSrc.includes("http") && (audioSrc = audioSrc.replace("//", "https://"));
-    }
-    else if (audio) {
-        let exactWord = word.replace(/·/g, ''), // We do not want syllable seperator to be present.
+    // if (audioSrc) {
+    //     !audioSrc.includes("http") && (audioSrc = audioSrc.replace("//", "https://"));
+    // }
+    // else if (audio) {
+    //     let exactWord = word.replace(/·/g, ''), // We do not want syllable seperator to be present.
             
-        queryString = new URLSearchParams({
-            text: exactWord, 
-            enc: 'mpeg', 
-            lang: context.lang, 
-            speed: '0.4', 
-            client: 'lr-language-tts', 
-            use_google_only_voices: 1
-        }).toString();
+    //     queryString = new URLSearchParams({
+    //         text: exactWord, 
+    //         enc: 'mpeg', 
+    //         lang: context.lang, 
+    //         speed: '0.4', 
+    //         client: 'lr-language-tts', 
+    //         // use_google_only_voices: 1
+    //     }).toString();
 
-        audioSrc = `${GOOGLE_SPEECH_URI}?${queryString}`;
+        // audioSrc = `${GOOGLE_SPEECH_URI}?${queryString}`;
     }
 
-    return { word: word, meaning: meaning, audioSrc: audioSrc };
+    // return { word: word, meaning: meaning, audioSrc: audioSrc };
 };
 
 function saveWord (content) {
